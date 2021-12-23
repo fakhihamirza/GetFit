@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+    <ProjectReference Include="..\GetFitApp\GetFitApp.csproj" />
   </ItemGroup>
 
 </Project>

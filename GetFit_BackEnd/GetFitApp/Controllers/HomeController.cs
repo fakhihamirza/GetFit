@@ -69,22 +69,22 @@ namespace GetFitApp.Controllers
         {
             Console.WriteLine("Inside post profile");
             Console.WriteLine(user.query);
-            return RedirectToAction("GetData", "Home",  user );
+            return RedirectToAction("GetData", "Home",  new { userq = user.query } );
 
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetData(Get_user userq)
+        public async Task<IActionResult> GetData(string userq)
         {
             Console.WriteLine("Get Data k ander");
-            Console.WriteLine(userq.query);
+            Console.WriteLine(userq);
             Getdata dat = new Getdata();
 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.calorieninjas.com/v1/nutrition?query=");
                 var httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Get, "https://api.calorieninjas.com/v1/nutrition?query="+userq.query)
+                    HttpMethod.Get, "https://api.calorieninjas.com/v1/nutrition?query="+userq)
                 {
                     Headers =
                     {
@@ -110,6 +110,21 @@ namespace GetFitApp.Controllers
             }
             return View(dat);
         }
+        
+        
+        //[HttpPost]
+        //public async Task<IActionResult> GetData(Get_user userq)
+        //{
+
+        //}
+
+
+
+
+
+
+
+
         [HttpGet]
         public ActionResult Index()
         {

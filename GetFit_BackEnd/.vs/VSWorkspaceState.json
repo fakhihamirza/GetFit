@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DataAccessLayer",
+    "\\GetFit",
+    "\\GetFitApp",
+    "\\GetFitApp\\Views",
+    "\\GetFitApp\\Views\\Home",
+    "\\GetFitApp\\wwwroot"
   ],
+  "SelectedNode": "\\GetFitApp\\Views\\Home\\GetData.cshtml",
   "PreviewInSolutionExplorer": false
 }
