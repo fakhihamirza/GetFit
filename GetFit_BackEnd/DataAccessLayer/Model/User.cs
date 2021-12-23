@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +14,7 @@ namespace DataAccessLayer
         [Required]
         public string FirstName { get; set; }
         [Required]
+        public List<UserHistory> user_history { get; set; }
         public string LastName { get; set; }
         [Required]
         public string UserName { get; set; }

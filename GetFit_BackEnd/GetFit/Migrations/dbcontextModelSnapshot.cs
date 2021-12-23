@@ -62,7 +62,20 @@ namespace GetFit.Migrations
 
                     b.HasKey("food_id");
 
+                    b.HasIndex("UserID");
+
                     b.ToTable("UserHistory");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.UserHistory", b =>
+                {
+                    b.HasOne("DataAccessLayer.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

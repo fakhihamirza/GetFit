@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAfIUpKlqiAU2Kem64Nk/pQwAAAAACAAAAAAAQZgAAAAEAACAAAAD8kyxBk472vuRYDMI1AAxtS1SeOTTFDYnuwUCwnmNtfAAAAAAOgAAAAAIAACAAAAB8MNC+6obu8nzPMUOAT8t0xfC4ej5X/l76vL5EbhFE64AAAABfimsVgE2IlxMa+6ksl04c/6Nru2Ggzh8IPXMz8HJFIK1X0o2pC+B9jq0SY2Fgiwc6r3zoMyuMNe7ZQwPAKFydlIi28tGgBGb92R4X2/b0Gocj+92hulAPRN4lFkOQr179qL1Z9kRb0BJDEt0gOAS803FEkNuO/mwX0dnTa5NLF0AAAADo7WTLuHNyZNVK2r3x4sweX+yNWGDYwzrhZXug9gRqq0+itJHpZyt7I5EbCCs1B1zDily1w6o4znr/MGKDpX8s</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="conn_str">
+      <Value>Data Source=tcp:getfitdbserver.database.windows.net,1433%3bInitial Catalog=GetFit_db%3bUser Id=fakhiha%40getfitdbserver%3bPassword=A4techlogic</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="GetFit.DB_Context.dbcontext">
+      <Value>Data Source=tcp:getfitdbserver.database.windows.net,1433%3bInitial Catalog=GetFit_db%3bUser Id=fakhiha%40getfitdbserver%3bPassword=A4techlogic</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

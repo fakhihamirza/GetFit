@@ -1,4 +1,4 @@
-﻿@model GetFitApp.Models.Getdata
+﻿@model GetFitApp.Models.ViewProfileModel
 
 @{
     ViewData["Title"] = "GetData";
@@ -16,7 +16,7 @@
         <th>sugar_g</th>
         <th>carbohydrates_total_g</th>
     </tr>
-    @{ foreach (var i in Model.items)
+    @{ foreach (var i in Model.gt.items)
         {
             <tr>
                 <td>@i.name</td>
@@ -28,11 +28,13 @@
                 <td>@i.carbohydrates_total_g</td>
             </tr>
 
-            }
         }
- </table>
-
+    }
+    
+</table>
+<input type="submit" value="Save Results" />
 <div>
     <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Get History", "History", new { Id = Model.gu.UserID })
     @*<a asp-action="History">Speaker Evaluations</a>*@
 </div>

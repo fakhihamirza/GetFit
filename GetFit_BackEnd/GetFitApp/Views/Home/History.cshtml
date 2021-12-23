@@ -1,0 +1,33 @@
+﻿@model IEnumerable<GetFitApp.Models.ReadHistory>
+
+@{
+    ViewData["Title"] = "History";
+}
+
+<h1>History Of Food Items Consumed</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.food_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.food_name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in @Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.food_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.food_name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

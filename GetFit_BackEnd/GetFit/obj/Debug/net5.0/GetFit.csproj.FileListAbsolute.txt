@@ -209,3 +209,4 @@ D:\Fast\Semester 7\IPT\Project\GetFit_BackEnd\GetFit\bin\Debug\net5.0\runtimes\w
 D:\Fast\Semester 7\IPT\Project\GetFit_BackEnd\GetFit\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Fast\Semester 7\IPT\Project\GetFit_BackEnd\GetFit\bin\Debug\net5.0\GetFitApp.dll
 D:\Fast\Semester 7\IPT\Project\GetFit_BackEnd\GetFit\bin\Debug\net5.0\GetFitApp.pdb
+D:\Fast\Semester 7\IPT\Project\GetFit_BackEnd\GetFit\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

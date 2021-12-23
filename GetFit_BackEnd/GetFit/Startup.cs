@@ -38,6 +38,7 @@ namespace GetFit
 
 
             services.AddTransient<UserContract, UserProvider>();
+            services.AddTransient<UserHistoryContract, UserHistoryProvider>();
             //services.AddScoped<UserContract, UserProvider>(); ????????????wotototototo
             services.AddDbContext<dbcontext>(Options =>
             Options.UseSqlServer(Configuration.GetConnectionString("conn_str")));

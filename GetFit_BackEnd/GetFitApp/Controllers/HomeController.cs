@@ -34,6 +34,16 @@ namespace GetFitApp.Controllers
             Api_Base_Url = _configure.GetValue<string>("GetFitApiUrl");
         }
         //redirection Page   
+
+
+        [HttpPost]
+        public async Task<ActionResult> Profile(Get_user user)
+        {
+            Console.WriteLine("Inside post profile");
+            Console.WriteLine(user.query);
+            return RedirectToAction("GetData", "Home", user);
+        }
+
         [HttpGet]
         public async Task<ActionResult> Profile(int id)
         {
@@ -64,27 +74,18 @@ namespace GetFitApp.Controllers
             //return RedirectToAction("GetData", "Home", new { User = user });
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Profile(Get_user user)
-        {
-            Console.WriteLine("Inside post profile");
-            Console.WriteLine(user.query);
-            return RedirectToAction("GetData", "Home",  new { userq = user.query } );
-
-        }
-
         [HttpGet]
-        public async Task<IActionResult> GetData(string userq)
+        public async Task<IActionResult> GetData(Get_user userq)
         {
             Console.WriteLine("Get Data k ander");
-            Console.WriteLine(userq);
+            Console.WriteLine(userq.query);
             Getdata dat = new Getdata();
-
+            ViewProfileModel mymodel = new ViewProfileModel();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.calorieninjas.com/v1/nutrition?query=");
                 var httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Get, "https://api.calorieninjas.com/v1/nutrition?query="+userq)
+                    HttpMethod.Get, "https://api.calorieninjas.com/v1/nutrition?query=" + userq.query)
                 {
                     Headers =
                     {
@@ -101,30 +102,36 @@ namespace GetFitApp.Controllers
                     dat = JsonConvert.DeserializeObject<Getdata>(res);
                     Console.WriteLine("hahahaha in data");
                     Console.WriteLine(dat);
+                    using (HttpClient client1 = new HttpClient())
+                    {
+                        WriteHistory obj = new WriteHistory();
+                        foreach (var i in dat.items)
+                        {
+                            obj.UserID = userq.UserID;
+                            obj.food_name = i.name;
+                        }
+                        StringContent content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+                        string endpoint = Api_Base_Url + "/api/addresult";
+                        using (var Response = await client.PostAsync(endpoint, content))
+                        {
+                            if (Response.StatusCode == System.Net.HttpStatusCode.OK)
+                            {
+                                var res1 = await Response.Content.ReadAsStringAsync();
+                                Console.WriteLine(res1);
+                            }
+                        }
+                    }
                 }
                 else //web api sent error response 
                 {
                     ModelState.Clear();
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
+                }
+                mymodel.gt = dat;
+                mymodel.gu = userq;
+                return View(mymodel);
             }
-            return View(dat);
-        }
-        
-        
-        //[HttpPost]
-        //public async Task<IActionResult> GetData(Get_user userq)
-        //{
-
-        //}
-
-
-
-
-
-
-
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -180,6 +187,41 @@ namespace GetFitApp.Controllers
             Login_user user = new Login_user();
             return View(user);
         }
+
+
+        [HttpGet]
+        public async Task<ActionResult> History(int id)
+        {
+            //List<ReadHistory> user = new List<ReadHistory>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Api_Base_Url);
+                Console.WriteLine(Api_Base_Url);
+                HttpResponseMessage result = await client.GetAsync($"api/UserHistory/{id}");
+                Console.WriteLine(result);
+                if (result.IsSuccessStatusCode)
+                {
+                    var res = await result.Content.ReadAsStringAsync();
+                    Console.WriteLine(res);
+                    var user = JsonConvert.DeserializeObject<IEnumerable<ReadHistory>>(res);
+                    Console.WriteLine("hehehehe");
+                    Console.WriteLine(user);
+                    user.ToList();
+                    Console.WriteLine(user);
+                    return View(user);
+                }
+                else //web api sent error response 
+                {
+                    ModelState.Clear();
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View();
+        }
+
+
+
+
         [HttpPost]
         public async Task<ActionResult> Login(Login_user user)
         {

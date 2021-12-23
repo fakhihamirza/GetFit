@@ -1,5 +1,4 @@
 ﻿using DataAccessLayer;
-using GetFitApp.Models;
 using DataAccessLayer.DTO;
 using System;
 using System.Collections.Generic;

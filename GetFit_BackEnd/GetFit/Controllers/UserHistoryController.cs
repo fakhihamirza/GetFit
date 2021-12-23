@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccessLayer;
+using DataAccessLayer.DTO;
 using GetFit.Contracts;
 using GetFit.Providers;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +14,6 @@ namespace GetFit.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class UserHistoryController : Controller
     {
         private UserHistoryContract user_contract;
@@ -24,25 +24,22 @@ namespace GetFit.Controllers
             _Mapper = Mapper;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<ReadHistory>> getresults()
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<ReadHistory>> getresults(int id)
         {
-            int JWT_Claim_User_Id = Int32.Parse(User.FindFirst("Id").Value);
-            var Blogs = user_contract.GetHistory(JWT_Claim_User_Id);
-            return Ok(_Mapper.Map<IEnumerable<ReadHistory>>(Blogs));
-            //test aa = new test();
+            var results = user_contract.GetHistory(id);
+            return Ok(_Mapper.Map<IEnumerable<ReadHistory>>(results));
         }
+
+
 
         [Route("~/api/addresult")]
         [HttpPost]
         public ActionResult Addresult(WriteHistory result)
         {
-            int JWT_Claim_User_Id = Int32.Parse(User.FindFirst("Id").Value);
-            var new_result = Mapper.Map<UserHistory>(result);
-            new_result.UserID = JWT_Claim_User_Id;
+            var new_result = (UserHistory)_Mapper.Map<UserHistory>(result);
             user_contract.Add(new_result);
             user_contract.SaveChanges();
-            var Read_Blog = _Mapper.Map<ReadHistory>(new_result);
             return Ok();
         }
     }

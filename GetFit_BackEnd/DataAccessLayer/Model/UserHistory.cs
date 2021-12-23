@@ -12,8 +12,7 @@ namespace DataAccessLayer
     {
         [ForeignKey("User")]
         public int UserID { get; set; }
-        [Required]
-        public DateTime Posted_At = DateTime.Now;
+        public User User { get; set; }
         [Required]
         [Key]
         [ScaffoldColumn(false)]

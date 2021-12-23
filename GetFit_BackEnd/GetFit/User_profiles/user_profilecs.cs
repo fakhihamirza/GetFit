@@ -15,6 +15,10 @@ namespace GetFit.User_profiles
             CreateMap<User, Register_user>();
             CreateMap<Register_user, User>();
             CreateMap<Get_User, User>();
+            CreateMap<UserHistory, WriteHistory>();
+            CreateMap<WriteHistory, UserHistory>();
+            CreateMap<ReadHistory, UserHistory>();
+            CreateMap<UserHistory, ReadHistory>();
             CreateMap<User, Get_User>();
             //CreateMap<WriteExternalEmployee, Employee>();
         }
