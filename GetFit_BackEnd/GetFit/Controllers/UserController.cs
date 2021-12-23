@@ -29,12 +29,17 @@ namespace GetFit.Controllers
         public ActionResult<Get_User> GetUser(int Id)   //given an if return Get_user ka user obj
         {
             var user_obj = user_contract.GetUser(Id);  //contract wala getuser
+            Console.WriteLine(user_obj.FirstName);
+            Console.WriteLine("Before if");
             if (user_obj != null)
             {
+                Console.WriteLine("ccccdddddxxxxssss");
+                Console.WriteLine(user_obj.LastName);
                 return Ok(_Mapper.Map<Get_User>(user_obj));
             }
             else
             {
+                Console.WriteLine("In else");
                 return NotFound();
             }
         }
@@ -51,7 +56,7 @@ namespace GetFit.Controllers
             user_contract.SaveChanges();
             var Read_User = _Mapper.Map<Get_User>(New_User);
             //return Ok(_Mapper.Map<User>(Read_User));
-            return CreatedAtRoute(nameof(GetUser), new { Id = New_User.UserID }, Read_User);
+            return Ok(New_User.UserID);
         }
         [Route("~/api/login")]
         [AllowAnonymous]

@@ -17,6 +17,7 @@ namespace GetFit.Providers
     {
         private readonly dbcontext db_context;
         private readonly string Private_Key;
+        
         public UserProvider(dbcontext obj)
         {
             db_context = obj;

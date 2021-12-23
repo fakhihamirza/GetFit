@@ -45,6 +45,25 @@ namespace GetFit.Migrations
 
                     b.ToTable("User");
                 });
+
+            modelBuilder.Entity("DataAccessLayer.UserHistory", b =>
+                {
+                    b.Property<int>("food_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("food_name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("food_id");
+
+                    b.ToTable("UserHistory");
+                });
 #pragma warning restore 612, 618
         }
     }

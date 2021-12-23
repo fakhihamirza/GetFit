@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\GetFit_BackEnd",
+    "\\GetFit_BackEnd\\DataAccessLayer",
+    "\\GetFit_BackEnd\\GetFit",
+    "\\GetFit_BackEnd\\GetFitApp",
+    "\\GetFit_BackEnd\\GetFitApp\\Views",
+    "\\GetFit_BackEnd\\GetFit\\Migrations"
+  ],
+  "PreviewInSolutionExplorer": false
+}

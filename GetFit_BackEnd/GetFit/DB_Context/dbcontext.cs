@@ -13,5 +13,6 @@ namespace GetFit.DB_Context
         {
         }
         public DbSet<User> User{ get; set; } //makes a db table named user
+        public DbSet<UserHistory> UserHistory { get; set; }
     }
 }

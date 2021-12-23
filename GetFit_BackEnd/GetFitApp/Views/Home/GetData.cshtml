@@ -1,0 +1,38 @@
+﻿@model GetFitApp.Models.Getdata
+
+@{
+    ViewData["Title"] = "GetData";
+}
+
+<h1>Calorie Calculator</h1>
+<div><b>Table Format Data Displaying in ForEach</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>name </th>
+        <th>fat_total_g </th>
+        <th>calories </th>
+        <th>cholesterol_mg</th>
+        <th>protein_g</th>
+        <th>sugar_g</th>
+        <th>carbohydrates_total_g</th>
+    </tr>
+    @{ foreach (var i in Model.items)
+        {
+            <tr>
+                <td>@i.name</td>
+                <td>@i.fat_total_g</td>
+                <td>@i.calories</td>
+                <td>@i.cholesterol_mg</td>
+                <td>@i.protein_g</td>
+                <td>@i.sugar_g</td>
+                <td>@i.carbohydrates_total_g</td>
+            </tr>
+
+            }
+        }
+ </table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="History">Speaker Evaluations</a>*@
+</div>
